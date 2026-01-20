@@ -1,0 +1,36 @@
+# Flask==2.3.3
+# Flask-CORS==4.0.0
+# pymongo==4.5.0
+# python-dotenv==1.0.0
+# groq>=1.0.0  # Updated version
+# # pydantic==2.5.0
+
+# ********************************************************************************************
+
+# Flask Framework
+Flask==3.0.2
+Flask-CORS==4.0.0
+
+# Database
+pymongo==4.6.1
+dnspython==2.4.2
+
+# Environment & Configuration
+python-dotenv==1.0.0
+
+# AI/LLM Integration - UPDATED TO LATEST VERSION
+groq==0.37.1
+
+# JSON Utilities
+# pymongo[srv] is included in pymongo
+
+# Development
+werkzeug==3.0.1
+
+deep-translator==1.11.4
+SpeechRecognition==3.10.1
+gTTS==2.4.0
+pygame==2.5.2
+
+streamlit>=1.28.0
+requests>=2.31.0

@@ -1,0 +1,141 @@
+{
+  "classroom_noise": [
+    "Stop speaking and raise one hand silently until students copy",
+    "Write a short task on the board for early finishers",
+    "Change seating for five minutes only, then revert",
+    "Use a rhythmic clap and wait for students to repeat",
+    "Assign a student monitor to distribute slates or books",
+    "Pause the activity and restart with clearer instructions",
+    "Reduce group size temporarily"
+  ],
+
+  "students_not_engaged": [
+    "Ask a simple yes/no question to the whole class",
+    "Call a random name and ask them to explain one step",
+    "Introduce a 2-minute timed challenge",
+    "Let students stand while answering",
+    "Use objects from the classroom as examples",
+    "Switch from group work to pairs",
+    "Ask students to teach their neighbor"
+  ],
+
+  "fast_finishers_disrupting": [
+    "Give an extension question related to the same topic",
+    "Ask them to check one other student’s work",
+    "Assign them as group helpers, not leaders",
+    "Give a drawing-based task linked to the lesson",
+    "Ask them to write one question for the class",
+    "Provide mental math challenges",
+    "Seat them together temporarily"
+  ],
+
+  "slow_learners_stuck": [
+    "Break the problem into one smaller step",
+    "Use physical objects like stones or sticks",
+    "Solve one example together on the board",
+    "Pair with a patient peer",
+    "Ask guiding questions instead of giving answers",
+    "Allow oral answers instead of written",
+    "Reduce the number of questions"
+  ],
+
+  "zero_confusion_place_value": [
+    "Use bundles of sticks to show tens and ones",
+    "Cross out tens physically on the board",
+    "Write numbers in expanded form",
+    "Ask students to draw boxes for tens and ones",
+    "Use money examples (₹10, ₹1)",
+    "Explain zero as 'nothing in this box'",
+    "Let students act as tens and ones"
+  ],
+
+  "subtraction_borrowing_issue": [
+    "Use physical borrowing with objects",
+    "Rename borrowing as 'regrouping'",
+    "Solve without algorithm first",
+    "Demonstrate using number line",
+    "Use color chalk for borrowing step",
+    "Ask students to predict before solving",
+    "Compare wrong vs right example"
+  ],
+
+  "multi_grade_classroom": [
+    "Give independent work to older students first",
+    "Teach younger group for 10 focused minutes",
+    "Use peer teaching across grades",
+    "Rotate attention in fixed time blocks",
+    "Use same topic at different difficulty levels",
+    "Seat grades separately",
+    "Use bell or clap to switch focus"
+  ],
+
+  "group_work_chaos": [
+    "Reduce group size to pairs",
+    "Assign clear roles (reader, writer)",
+    "Write steps on the board",
+    "Time-bound the activity",
+    "Demonstrate expected behavior",
+    "Stop and reset the activity",
+    "Praise one group doing it correctly"
+  ],
+
+  "concept_not_understood": [
+    "Explain using a daily life example",
+    "Ask students to restate in their own words",
+    "Draw a simple diagram",
+    "Solve one more example slowly",
+    "Use local context (market, home, farm)",
+    "Switch explanation method",
+    "Check understanding with thumbs up/down"
+  ],
+
+  "exam_anxiety_students": [
+    "Tell students marks are not punishment",
+    "Do one question together",
+    "Allow students to talk through steps",
+    "Encourage attempts, not accuracy",
+    "Start with easiest question",
+    "Praise effort openly",
+    "Remind them this is practice"
+  ],
+
+  "teacher_overwhelmed": [
+    "Pause and take three deep breaths",
+    "Simplify the lesson goal",
+    "Focus on one group at a time",
+    "Ignore minor disruptions briefly",
+    "Use the board to regain attention",
+    "End activity early if needed",
+    "Reflect after class, not during"
+  ],
+
+  "no_teaching_materials": [
+    "Use stones, chalk pieces, leaves",
+    "Draw diagrams instead of tools",
+    "Use students as learning props",
+    "Use slates for quick practice",
+    "Use fingers for counting",
+    "Write examples from daily life",
+    "Reuse old notebooks for practice"
+  ],
+
+  "language_barrier": [
+    "Explain first in local language",
+    "Use gestures and actions",
+    "Repeat key words slowly",
+    "Ask students to translate",
+    "Use pictures or drawings",
+    "Limit new vocabulary",
+    "Encourage peer explanation"
+  ],
+
+  "attention_span_low": [
+    "Switch activity every 10 minutes",
+    "Use movement-based questions",
+    "Let students stand briefly",
+    "Ask rapid-fire questions",
+    "Use call-and-response",
+    "Change voice tone",
+    "Introduce a short break"
+  ]
+}

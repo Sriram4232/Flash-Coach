@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="app.title">Flash Coach - Personal Teaching Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Language Panel -->
+        <div class="language-panel">
+            <div class="panel-header">
+                <i class="fas fa-language"></i>
+                <h3 data-i18n="language.settings">Language Settings</h3>
+            </div>
+            <div class="language-list" id="languageList">
+                <div class="loading-languages">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span data-i18n="language.loading">Loading languages...</span>
+                </div>
+            </div>
+            <div class="voice-controls">
+                <div class="control-group">
+                    <button id="voiceOutputBtn" class="voice-toggle-btn" title="Toggle voice output" data-title-i18n="voice.toggle">
+                        <i class="fas fa-volume-mute"></i>
+                        <span data-i18n="voice.output.off">Voice Output: OFF</span>
+                    </button>
+                </div>
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="autoTranslate" checked>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span data-i18n="language.autoTranslate">Auto Translate</span>
+                    </label>
+                </div>
+            </div>
+            <div class="current-language">
+                <i class="fas fa-check-circle"></i>
+                <span id="currentLangDisplay">English</span>
+            </div>
+            <div class="panel-footer">
+                <small>
+                    <i class="fas fa-info-circle"></i>
+                    <span data-i18n="voice.browserHint">Voice input works best in Chrome</span>
+                </small>
+            </div>
+        </div>
+
+        <!-- Main content container -->
+        <div class="main-content">
+            <!-- Escalation Alert -->
+            <div id="escalationAlert" class="escalation-alert hidden">
+                <div class="alert-content">
+                    <div class="alert-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="alert-text">
+                        <h4 data-i18n="escalation.title">Mentor Support Suggested</h4>
+                        <p data-i18n="escalation.message">We've noticed some strategies haven't been working well. Consider connecting with a mentor for personalized guidance.</p>
+                        <div class="alert-actions">
+                            <button id="contactMentorBtn" class="btn btn-warning">
+                                <i class="fas fa-user-check"></i>
+                                <span data-i18n="escalation.contactMentor">Contact Mentor</span>
+                            </button>
+                            <button id="dismissAlertBtn" class="btn btn-ghost" data-i18n="escalation.later">Later</button>
+                        </div>
+                    </div>
+                    <button id="closeAlertBtn" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feedback Reminder Modal -->
+            <div id="feedbackReminder" class="feedback-reminder hidden">
+                <div class="reminder-content">
+                    <div class="reminder-icon">
+                        <i class="fas fa-comment-alt-check"></i>
+                    </div>
+                    <div class="reminder-text">
+                        <h4 data-i18n="feedback.reminder.title">How did it go?</h4>
+                        <p data-i18n="feedback.reminder.message">Did the suggested strategies work for your classroom? Your feedback helps Flash Coach improve.</p>
+                        <p class="reminder-hint" data-i18n="feedback.reminder.hint">You can also click the feedback buttons below each response.</p>
+                        <div class="reminder-actions">
+                            <button id="giveFeedbackBtn" class="btn btn-primary">
+                                <i class="fas fa-star"></i>
+                                <span data-i18n="feedback.reminder.giveFeedback">Give Feedback</span>
+                            </button>
+                            <button id="remindLaterBtn" class="btn btn-ghost" data-i18n="feedback.reminder.later">Remind Later</button>
+                        </div>
+                    </div>
+                    <button id="closeReminderBtn" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Chat Container -->
+            <div class="chat-container">
+                <!-- Header -->
+                <div class="header">
+                    <div class="app-brand">
+                        <div class="brand-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <span class="brand-name">Flash Coach</span>
+                        <span class="language-badge" id="currentLangBadge">EN</span>
+                    </div>
+                    <p id="teacherGreeting" class="teacher-greeting" data-i18n="greeting.default">Hello! How can I help you today?</p>
+                    <div id="connectionStatus" class="connection-status">
+                        <span class="status-dot"></span>
+                        <span class="status-text" data-i18n="connection.connecting">Connecting...</span>
+                    </div>
+                </div>
+
+                <!-- Messages Area -->
+                <div id="messagesArea" class="messages-area">
+                    <!-- Initial empty state -->
+                    <div id="emptyState" class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <h2 data-i18n="empty.title">Your Personal Teaching Coach</h2>
+                        <p data-i18n="empty.description">Describe any classroom challenge and get immediate, personalized strategies in your preferred language.</p>
+                        <div class="suggestions">
+                            <button class="suggestion-btn" data-suggestion="Students are distracted and talking">
+                                <i class="fas fa-volume-up"></i>
+                                <span data-i18n="suggestion.distracted">Students are distracted and talking</span>
+                            </button>
+                            <button class="suggestion-btn" data-suggestion="Some students don't understand the concept">
+                                <i class="fas fa-lightbulb"></i>
+                                <span data-i18n="suggestion.concept">Students don't understand the concept</span>
+                            </button>
+                            <button class="suggestion-btn" data-suggestion="Students are nervous about the test">
+                                <i class="fas fa-heartbeat"></i>
+                                <span data-i18n="suggestion.anxious">Students are nervous about tests</span>
+                            </button>
+                        </div>
+                        <div class="features-list">
+                            <div class="feature">
+                                <i class="fas fa-language"></i>
+                                <span data-i18n="feature.multilingual">Multi-language support</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-volume-up"></i>
+                                <span data-i18n="feature.voice">Voice output available</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span data-i18n="feature.translation">Real-time translation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <form id="chatForm">
+                        <div class="input-wrapper">
+                            <textarea 
+                                id="messageInput" 
+                                placeholder="" 
+                                rows="1"
+                                oninput="autoResize(this)"
+                                data-placeholder-i18n="input.placeholder"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button type="button" id="voiceInputBtn" class="voice-btn" title="Voice Input" data-title-i18n="input.voiceTitle">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                                <button type="button" id="translateInputBtn" class="translate-btn" title="Translate to English" data-title-i18n="input.translateTitle">
+                                    <i class="fas fa-language"></i>
+                                </button>
+                                <button type="submit" id="sendBtn" class="send-btn" disabled>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-hint-row">
+                            <p class="input-hint">
+                                <i class="fas fa-keyboard"></i>
+                                <span data-i18n="input.hint.enter">Press Enter to send</span> • 
+                                <i class="fas fa-shift"></i>
+                                <span data-i18n="input.hint.shiftEnter">Shift+Enter for new line</span> • 
+                                <i class="fas fa-microphone"></i>
+                                <span data-i18n="input.hint.voice">Voice</span>
+                            </p>
+                            <div class="input-language">
+                                <i class="fas fa-globe"></i>
+                                <span id="inputLangDisplay">Detecting...</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Audio Player (hidden) -->
+    <audio id="audioPlayer" style="display: none;"></audio>
+
+    <!-- Templates -->
+    <template id="userMessageTemplate">
+        <div class="message user-message">
+            <div class="message-bubble">
+                <div class="message-content-wrapper">
+                    <p class="message-content"></p>
+                </div>
+            </div>
+            <div class="message-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </template>
+
+    <template id="assistantMessageTemplate">
+        <div class="message assistant-message">
+            <div class="message-avatar">
+                <i class="fas fa-sparkles"></i>
+            </div>
+            <div class="message-bubble">
+                <div class="message-header">
+                    <div class="message-controls">
+                        <button class="message-voice-btn" title="Play voice output" data-title-i18n="message.playVoice">
+                            <i class="fas fa-volume-mute"></i>
+                        </button>
+                        <button class="translate-toggle-btn" title="Toggle translation" data-title-i18n="message.toggleTranslation">
+                            <i class="fas fa-language"></i>
+                        </button>
+                    </div>
+                    <div class="problem-type">
+                        <span class="type-badge"></span>
+                    </div>
+                </div>
+                <div class="message-content-wrapper">
+                    <p class="message-content"></p>
+                </div>
+                <div class="strategies"></div>
+                <div class="feedback-section">
+                    <span class="feedback-label" data-i18n="feedback.label">Did this help?</span>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn worked" data-feedback="worked">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-i18n="feedback.worked">Worked</span>
+                        </button>
+                        <button class="feedback-btn partial" data-feedback="partial">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span data-i18n="feedback.partial">Partially</span>
+                        </button>
+                        <button class="feedback-btn failed" data-feedback="failed">
+                            <i class="fas fa-times-circle"></i>
+                            <span data-i18n="feedback.failed">Didn't Work</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="feedback-recorded hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <span data-i18n="feedback.recorded">Feedback recorded</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="systemMessageTemplate">
+        <div class="system-message">
+            <i class="fas fa-clock"></i>
+            <span class="system-content"></span>
+        </div>
+    </template>
+
+    <template id="strategyTemplate">
+        <div class="strategy">
+            <div class="strategy-header">
+                <div class="strategy-number"></div>
+                <!-- <button class="strategy-voice-btn" title="Play this strategy" data-title-i18n="strategy.play">
+                    <i class="fas fa-play-circle"></i>
+                </button> -->
+            </div>
+            <div class="strategy-content">
+                <h4 class="strategy-title"></h4>
+                <p class="strategy-description"></p>
+                <div class="strategy-original hidden">
+                    <small><i class="fas fa-globe"></i> <span data-i18n="strategy.original">Original English:</span></small>
+                    <p class="original-text"></p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="languageOptionTemplate">
+        <label class="language-option">
+            <input type="radio" name="language" value="">
+            <span class="checkmark"></span>
+            <span class="language-name"></span>
+            <span class="language-code"></span>
+        </label>
+    </template>
+
+    <template id="loadingTemplate">
+        <div class="message assistant-message loading">
+            <div class="message-avatar">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <div class="message-bubble">
+                <div class="loading-text">
+                    <span data-i18n="loading.analyzing">Analyzing your challenge</span>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="loading-hint">
+                    <small><i class="fas fa-sync-alt"></i> <span data-i18n="loading.translating">Translating to your language...</span></small>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
