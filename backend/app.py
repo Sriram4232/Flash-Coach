@@ -913,13 +913,13 @@ def index():
     })
 
 if __name__ == '__main__':
-    print("🚀 Starting Flash Coach API Server...")
-    print(f"📁 Database: {DATABASE_NAME}")
-    print(f"🔑 Groq API: {'✅ Configured' if GROQ_API_KEY else '⚠️  Not configured'}")
-    print(f"🤖 Groq Client: {'✅ Available' if groq_client else '⚠️  Using mock responses'}")
+    # print("🚀 Starting Flash Coach API Server...")
+    # print(f"📁 Database: {DATABASE_NAME}")
+    # print(f"🔑 Groq API: {'✅ Configured' if GROQ_API_KEY else '⚠️  Not configured'}")
+    # print(f"🤖 Groq Client: {'✅ Available' if groq_client else '⚠️  Using mock responses'}")
     
     init_db()
     
-    print(f"🌐 Server running on http://localhost:{PORT}")
-    print("=" * 50)
-    app.run(debug=True, host='0.0.0.0', port=PORT)
+    # print(f"🌐 Server running on http://localhost:{PORT}")
+    # print("=" * 50)
+    # app.run(debug=True, host='0.0.0.0', port=PORT)
