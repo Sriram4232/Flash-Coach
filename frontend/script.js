@@ -358,7 +358,7 @@ async function loadFallbackStrategies() {
 // Load supported languages from server
 async function loadSupportedLanguages() {
     try {
-        const response = await fetch(`${API_BASE_URL}/languages`);
+        const response = await fetch(`${API_BASE_URL}/api/languages`);
         if (response.ok) {
             state.supportedLanguages = await response.json();
             console.log('✅ Supported languages loaded');
@@ -603,7 +603,7 @@ async function translateText(text, targetLang = state.currentLanguage, sourceLan
     }
     
     try {
-        const response = await fetch(`${API_BASE_URL}/translate`, {
+        const response = await fetch(`${API_BASE_URL}/api/translate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -667,7 +667,7 @@ async function useServerTTS(text, lang) {
     try {
         console.log(`📡 Server TTS request: ${lang}, ${text.length} chars`);
         
-        const response = await fetch(`${API_BASE_URL}/text-to-speech`, {
+        const response = await fetch(`${API_BASE_URL}/api/text-to-speech`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1213,7 +1213,7 @@ async function initializeApp() {
 
 async function checkHealth() {
     try {
-        const response = await fetch(`${API_BASE_URL}/health`);
+        const response = await fetch(`${API_BASE_URL}/api/health`);
         const data = await response.json();
         return data.status === 'healthy';
     } catch (error) {
@@ -1225,7 +1225,7 @@ async function loadTeachers() {
     if (state.isOfflineMode) return;
     
     try {
-        const response = await fetch(`${API_BASE_URL}/teachers`);
+        const response = await fetch(`${API_BASE_URL}/api/teachers`);
         const teachers = await response.json();
         if (teachers.length > 0) {
             state.currentTeacher = teachers[0];
@@ -1240,7 +1240,7 @@ async function loadClassrooms() {
     if (state.isOfflineMode) return;
     
     try {
-        const response = await fetch(`${API_BASE_URL}/classrooms`);
+        const response = await fetch(`${API_BASE_URL}/api/classrooms`);
         const classrooms = await response.json();
         if (classrooms.length > 0 && state.currentTeacher) {
             const teacherClassroom = classrooms.find(c => c.teacher_id === state.currentTeacher._id);
@@ -1255,7 +1255,7 @@ async function loadStrategies() {
     if (state.isOfflineMode) return;
     
     try {
-        const response = await fetch(`${API_BASE_URL}/strategies`);
+        const response = await fetch(`${API_BASE_URL}/api/strategies`);
         state.strategies = await response.json();
     } catch (error) {
         console.error('Failed to load strategies:', error);
@@ -1266,7 +1266,7 @@ async function loadInteractions() {
     if (state.isOfflineMode) return;
     
     try {
-        const response = await fetch(`${API_BASE_URL}/interactions`);
+        const response = await fetch(`${API_BASE_URL}/api/interactions`);
         state.interactions = await response.json();
     } catch (error) {
         console.error('Failed to load interactions:', error);
@@ -1628,7 +1628,7 @@ async function getCoachingAdvice(query) {
     }
     
     try {
-        const response = await fetch(`${API_BASE_URL}/coaching/advice`, {
+        const response = await fetch(`${API_BASE_URL}/api/coaching/advice`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1795,7 +1795,7 @@ async function createInteraction(query, data) {
     };
     
     try {
-        const response = await fetch(`${API_BASE_URL}/interactions`, {
+        const response = await fetch(`${API_BASE_URL}/api/interactions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1823,7 +1823,7 @@ async function handleFeedback(interactionId, feedback) {
             setFeedbackReminder(false);
         }
         
-        const response = await fetch(`${API_BASE_URL}/interactions/${interactionId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/interactions/${interactionId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -1876,7 +1876,7 @@ async function handleContactMentor() {
             status: 'pending'
         };
         
-        await fetch(`${API_BASE_URL}/escalations`, {
+        await fetch(`${API_BASE_URL}/api/escalations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
